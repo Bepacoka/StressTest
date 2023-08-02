@@ -52,13 +52,13 @@ layout["header"].update(Header())
 
 with Live(layout, refresh_per_second=25, screen=True):
     while True:
-        os.popen('python3 gen.py > test.txt')
+        os.popen('python gen.py>test.txt')
         sleep(0.04)
         with open("test.txt", "r") as file:
             layout["test"].update(Panel(''.join(file.readlines()), border_style="red", title="Current test"))
         sleep(0.04)
-        v2 = os.popen('./solution2 < test.txt').readlines()
-        v1 = os.popen('./solution1 < test.txt').readlines()
+        v2 = os.popen('solution2.exe<test.txt').readlines()
+        v1 = os.popen('solution1.exe<test.txt').readlines()
         layout["solution1"].update(Panel(Align.center(''.join(v1)), border_style="blue", title="First solution answer"))
         layout["solution2"].update(Panel(Align.center(''.join(v2)), border_style="green", title="Second solution answer"))
         t = int(time.time() - start_time)
